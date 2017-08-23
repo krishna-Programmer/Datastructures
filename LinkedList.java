@@ -1,4 +1,4 @@
- class  LinkedList<T>
+class  LinkedList<T>
 {
 Node<T> head;
 int length;
