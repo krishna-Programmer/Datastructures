@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 public class  LinkedList<T>
 {
 Node<T> head;
@@ -48,11 +48,11 @@ public void addBeforeHead(T data)
  head=new Node<T>(data);
  head.next=temp.next;
 }
-public void addAfter(T data)
+public void addAfter(T data,T dataToAdd)
 {
  if(find(data)!=-1)
 {
-  Node<T> newNode=new Node<T>(data);
+  Node<T> newNode=new Node<T>(dataToAdd);
   newNode.next=currentNode.next;
   currentNode.next=newNode;
 }
@@ -61,11 +61,11 @@ else
  System.out.println("Element not found");
 }
 }
-public void addBefore(T data)
+public void addBefore(T data,T dataToAdd)
 {
  if(find(data)!=-1)
 {
-  Node<T> newNode=new Node<T>(data);
+  Node<T> newNode=new Node<T>(dataToAdd);
   newNode.next=currentNode;
   previousNode.next=newNode;
 }
@@ -100,6 +100,14 @@ public Node<T> getLast()
 currentNode=head;
 while(currentNode.next!=null)currentNode=currentNode.next;
 return currentNode;
+}
+public void addAtIndex(int index,T data)
+{
+
+}
+public void removeAtIndex(int index)
+{
+
 }
 
 }

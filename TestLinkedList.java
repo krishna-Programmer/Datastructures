@@ -23,9 +23,9 @@ break;
 case 2:l.add(10);l.add(20);l.add(30);l.add(40);l.add(50);
 
 break;
-case 3:l.addBefore(10);
+case 3:l.addBefore(10,50);
 break;
-case 4:l.addAfter(30);break;
+case 4:l.addAfter(30,60);break;
 case 5:l.addBeforeHead(60);break;
 case 6:
 l.remove(20);break;
