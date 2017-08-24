@@ -3,12 +3,13 @@ public class  LinkedList<T>
 {
 Node<T> head;
 int length;
-Node<T> previous;
-Node<T> current;
+Node<T> previousNode;
+Node<T> currentNodeNode;
+Node<T> nexttNode;
 int index;
 private static class Node<T>
 {
-Node<T> next;
+Node<T> nexttNode;
 T data;
 Node(T data)
 {
@@ -24,29 +25,29 @@ public void add(T data)
 if(head==null)head=new Node<T>(data);
 else
 {
-current=head;
-while(current.next!=null)current=current.next;
-current.next=new Node<T>(data);
+currentNodeNode=head;
+while(currentNodeNode.nexttNode!=null)currentNodeNode=currentNodeNode.nexttNode;
+currentNodeNode.nexttNode=new Node<T>(data);
 }
 ++length;
 }
 public void remove(T data)
 {
-current=head;
-previous=null;
+currentNodeNode=head;
+previousNode=null;
 int index=0;
 boolean found=false;
-while(current!=null){
+while(currentNodeNode!=null){
 ++index;
-if(current.data==data){found=true;break;};
-previous=current;current=current.next;
+if(currentNodeNode.data==data){found=true;break;};
+previousNode=currentNodeNode;currentNodeNode=currentNodeNode.nexttNode;
 }
 
 if(found==true)
 {
 System.out.println("Element found at"+index);
-if(current==head)head=current.next;
-else previous.next=current.next;
+if(currentNodeNode==head)head=currentNodeNode.nexttNode;
+else previousNode.nexttNode=currentNodeNode.nexttNode;
 --length;
 }
 else
@@ -56,48 +57,50 @@ System.out.println("Element not found");
 }
 public void print()
 {
-  current=head;
-  while(current!=null){System.out.println(current.data);current=current.next;}
+  currentNodeNode=head;
+  while(currentNodeNode!=null){System.out.println(currentNodeNode.data);currentNodeNode=currentNodeNode.nexttNode;}
 }
 public void addBeforeHead(T data)
 {
  Node<T> temp=head;
  head=new Node<T>(data);
- head.next=temp.next;
+ head.nexttNode=temp.nexttNode;
 }
 public void insertAfter(T data)
 {
- 
+ find(T data);
+
+ currentNodeNode.nexttNode=new Node<T>(data);
+ currentNodeNode.nexttNode.nexttNode=currentNodeNode;
 }
 public void insertBefore(T data)
 {
 
+
 }
 public void find(T data) 
 {
-current=head;
-previous=null;
+currentNodeNode=head;
+previousNode=null;
 int index=0;
 boolean found=false;
-while(current!=null){
+while(currentNodeNode!=null){
 ++index;
-if(current.data==data){found=true;break;};
-previous=current;current=current.next;
+if(currentNodeNode.data==data){found=true;break;};
+previousNode=currentNodeNode;currentNodeNode=currentNodeNode.nexttNode;
 }
 
 if(found==true)
 {
 System.out.println("Element found at"+index);
-if(current==head)head=current.next;
-else previous.next=current.next;
+if(currentNodeNode==head)head=currentNodeNode.nexttNode;
+else previousNode.nexttNode=currentNodeNode.nexttNode;
 --length;
 }
 else
 {
 System.out.println("Element not found");
-}
-  
-
+} 
 }
 public static void main(String args[])
 {
