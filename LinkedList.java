@@ -2,11 +2,9 @@
 public class  LinkedList<T>
 {
 Node<T> head;
-int length;
 Node<T> previousNode;
 Node<T> currentNode;
-Node<T> nextNode;
-int index;
+int length;
 private static class Node<T>
 {
 Node<T> next;
@@ -16,36 +14,20 @@ Node(T data)
 this.data=data;
 }
 }
-public LinkedList()
-{
-
-}
 public void add(T data)
 {
 if(head==null)head=new Node<T>(data);
 else
 {
-currentNode=head;
-while(currentNode.next!=null)currentNode=currentNode.next;
+currentNode=getLast();
 currentNode.next=new Node<T>(data);
 }
 ++length;
 }
 public void remove(T data)
 {
-currentNode=head;
-previousNode=null;
-int index=0;
-boolean found=false;
-while(currentNode!=null){
-++index;
-if(currentNode.data==data){found=true;break;};
-previousNode=currentNode;currentNode=currentNode.next;
-}
-
-if(found==true)
+if(find(data)!=-1)
 {
-System.out.println("Element found at"+index);
 if(currentNode==head)head=currentNode.next;
 else previousNode.next=currentNode.next;
 --length;
@@ -66,19 +48,34 @@ public void addBeforeHead(T data)
  head=new Node<T>(data);
  head.next=temp.next;
 }
-public void insertAfter(T data)
+public void addAfter(T data)
 {
- find(T data);
-
- currentNode.next=new Node<T>(data);
- currentNode.next.next=currentNode;
-}
-public void insertBefore(T data)
+ if(find(data)!=-1)
 {
-
+  Node<T> newNode=new Node<T>(data);
+  newNode.next=currentNode.next;
+  currentNode.next=newNode;
+}
+else
+{
+ System.out.println("Element not found");
+}
+}
+public void addBefore(T data)
+{
+ if(find(data)!=-1)
+{
+  Node<T> newNode=new Node<T>(data);
+  newNode.next=currentNode;
+  previousNode.next=newNode;
+}
+else
+{
+ System.out.println("Element not found");
+}
 
 }
-public void find(T data) 
+public int find(T data) 
 {
 currentNode=head;
 previousNode=null;
@@ -89,32 +86,27 @@ while(currentNode!=null){
 if(currentNode.data==data){found=true;break;};
 previousNode=currentNode;currentNode=currentNode.next;
 }
-
 if(found==true)
 {
-System.out.println("Element found at"+index);
 if(currentNode==head)head=currentNode.next;
 else previousNode.next=currentNode.next;
 --length;
+return index;
 }
-else
+else return -1;
+}
+public Node<T> getLast()
 {
-System.out.println("Element not found");
-} 
+currentNode=head;
+while(currentNode.next!=null)currentNode=currentNode.next;
+return currentNode;
 }
 public static void main(String args[])
 {
 LinkedList<Integer> l=new LinkedList<>();
+System.out.println("select your option");
+enum options={print,addBefore,addAfter,addBeforeHead,remove,getLast};
 
-l.add(10);
-l.add(20);
-l.add(30);
-l.add(40);
-l.add(50);
-l.print();
-l.remove(10);
-l.print();
-System.out.println("length:"+l.length);
 
 
 
