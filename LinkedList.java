@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 public class  LinkedList<T>
 {
 Node<T> head;
@@ -101,14 +101,5 @@ currentNode=head;
 while(currentNode.next!=null)currentNode=currentNode.next;
 return currentNode;
 }
-public static void main(String args[])
-{
-LinkedList<Integer> l=new LinkedList<>();
-System.out.println("select your option");
-enum options={print,addBefore,addAfter,addBeforeHead,remove,getLast};
 
-
-
-
-}
 }
